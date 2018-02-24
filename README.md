@@ -26,7 +26,7 @@ At next startup, current davical database will be replaced by provided database 
 When data has been restored, `db.sql.gz` is renamed `db-restored.sql.gz`
 
 ## Installation
-This container requires two docker volumes :
+This container requires two docker volumes or bind mounts :
 - `/config/` contains configuration files
 - `/var/lib/postgresql/` contains Postgresql data files, backups, and restore
 
@@ -37,6 +37,10 @@ By default davical administrator credentials are the following :
 - password : `12345`
 
 **This MUST be changed using Web interface !**
+
+## Changelog
+- **v1.1** : New version now supports named volumes or bind mounts
+- **v1.0** : First version
 
 ## Feedback
 This is my first attempt to create a Docker container. Please provide your feedback if there is something wrong or good.

@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install -y postgresql-"$PG_VERSION" supervisor \
 
 COPY ./db-backup.sh /sbin/db-backup.sh
 COPY ./docker-entrypoint.sh /sbin/docker-entrypoint.sh
-COPY ./supervisord.conf /config/supervisord.conf
-COPY ./davical-apache.conf /config/davical-apache.conf
+COPY ./supervisord.conf /default/config/supervisord.conf
+COPY ./davical-apache.conf /default/config/davical-apache.conf
 COPY ./db-backup-cron /etc/cron.d/db-backup-cron
 COPY ./db-restore.sh /sbin/db-restore.sh
 
@@ -28,7 +28,8 @@ RUN crontab /etc/cron.d/db-backup-cron \
 	&& mkdir /var/lib/postgresql/restore
 RUN chown postgres:postgres /var/lib/postgresql/backups
 RUN chown postgres:postgres /var/lib/postgresql/restore
-RUN mv /etc/davical/config.php /config/davical-config.php 
+RUN mv /etc/davical/config.php /default/config/davical-config.php 
+RUN mv /var/lib/postgresql /default/data/
 
 EXPOSE 80
 
