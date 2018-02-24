@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Initialize volumes
+mv -n /default/config/* /config
+mv -n /default/data/* /var/lib/postgresql
+
 # Configure Apache
 ln -s /config/davical-apache.conf /etc/apache2/sites-available/davical-apache.conf
 a2dissite 000-default
@@ -34,6 +38,6 @@ fi
 service postgresql stop
 
 #LAUNCH THE INIT PROCESS
-#exec /bin/bash
-exec /usr/bin/supervisord -c /config/supervisord.conf
+exec /bin/bash
+#exec /usr/bin/supervisord -c /config/supervisord.conf
 
